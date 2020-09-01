@@ -1,0 +1,115 @@
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+    var l3 ListNode
+    curnt := &l3
+    var up int
+    s1 := true
+    s2 := true
+    
+    
+    
+   for { 
+       if (*l1).Next != nil {
+           if (*l2).Next != nil {
+               (*curnt).Val = (*l1).Val + (*l2).Val
+               
+               if up != 0 {(*curnt).Val += up
+                          up =0 }
+               if  (*curnt).Val >= 10 {
+                   (*curnt).Val -= 10
+                    
+                    up = 1
+                } 
+                (*curnt).Next = new(ListNode)
+               curnt = (*curnt).Next
+                l1 = (*l1).Next
+                l2 = (*l2).Next
+                
+            } else {
+               if s2 == true {
+                   (*curnt).Val = (*l1).Val + (*l2).Val
+                   
+                   s2 = false
+                   
+               } else {
+                   (*curnt).Val = (*l1).Val 
+                   
+               }
+               
+               
+                if up != 0 {
+                    (*curnt).Val += up
+                    up = 0 
+                }
+                if (*curnt).Val >= 10 {
+                    (*curnt).Val -= 10
+                    
+                    up = 1
+                }
+                    (*curnt).Next = new(ListNode)
+                    
+                    curnt = (*curnt).Next
+                    l1 = (*l1).Next
+                    
+            }
+        } else {
+           if (*l2).Next != nil{
+               if s1 == true {
+                   (*curnt).Val = (*l1).Val + (*l2).Val
+                   s1 = false
+               } else {
+                   (*curnt).Val = (*l2).Val
+               }
+               
+               
+                if up != 0 {
+                    (*curnt).Val += up
+                         up =0  
+                           }
+                    if (*curnt).Val >= 10 {
+                        (*curnt).Val -= 10
+                        
+                        up = 1
+                    }
+                        (*curnt).Next = new(ListNode)
+                        
+                        curnt = (*curnt).Next
+                        l2 = (*l2).Next
+                    
+                } else {
+               if s1 == true && s2 == true {
+                   (*curnt).Val = (*l1).Val + (*l2).Val
+                   s1 = false
+                   s2 = false
+               } else {
+                   if s1 == true && s2 == false {
+                       (*curnt).Val = (*l1).Val
+                   } else {
+                       (*curnt).Val = (*l2).Val
+                   }
+                   
+               }
+                     
+               
+                    if up != 0 {(*curnt).Val += up
+                               up =0 }
+                    if  (*curnt).Val >= 10 {
+                        (*curnt).Val -= 10
+                        up = 1
+                        (*curnt).Next = new(ListNode)
+                        curnt = (*curnt).Next
+                        (*curnt).Val = up
+                    } 
+                    return &l3
+                }
+        }
+       continue
+    }
+    
+}
