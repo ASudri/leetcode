@@ -1,0 +1,25 @@
+func twoSum(nums []int, target int) []int {
+    
+    
+    sx := make (map[int]int, len(nums))
+    
+        for idx, val := range nums {
+         sx[val]=idx
+         }
+        
+       
+   
+    
+    for i:=0; i < len(nums); i++ {
+           if val,ok := sx[target-nums[i]]; !ok || i == val{
+                 continue
+                 } else {
+                    return  []int{val,i}
+                     
+                 }
+            }
+    return  []int{}
+        }
+    
+
+   
